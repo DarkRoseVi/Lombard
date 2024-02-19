@@ -23,6 +23,7 @@ namespace LombardWpf.Wimdowes
     {
         public TypeProduct contexttype;
 
+
         public TypeAssesmentWindow(TypeProduct producttype)
         {
             InitializeComponent();
