@@ -30,6 +30,7 @@
         <StackPanel Background="Black" Grid.Row="0"  Orientation="Horizontal" Grid.ColumnSpan="3">
             <StackPanel  HorizontalAlignment="Left" Margin="10 0" Orientation="Horizontal" >
 
+               
                 <Button x:Name="AllProductsBtn" Content="Все товары" Click="AllProductsBt_Click"/>
                 <Button x:Name="CriterionBtn" Content="Критерии" Click="CriterionBtn_Click"/>
                 <Button x:Name="TypeBtn" Content="Типы" Click="TypeBtn_Click"/>
