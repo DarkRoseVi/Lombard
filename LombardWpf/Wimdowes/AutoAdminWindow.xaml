@@ -1,0 +1,32 @@
+﻿<Window x:Class="LombardWpf.Wimdowes.AutoAdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LombardWpf.Wimdowes"
+        mc:Ignorable="d"
+        Title="AutoAdminWindow" Height="300" Width="300"
+        ResizeMode="NoResize">
+    <Grid>
+        <StackPanel Orientation="Vertical"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Center">
+            <TextBlock Text="Логин"
+                Style="{StaticResource TextWindowes}"/>
+            <TextBox Name="LoginTb"/>
+            <TextBlock Text="Пароль"
+                Style="{StaticResource TextWindowes}"/>
+            <PasswordBox Name="PasswordTb"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Content="Войти" 
+                 x:Name="AutoBtn"
+                 Click="AutoBtn_Click"
+                 Style="{StaticResource ButtonWondowes}"/>
+                <Button Content="Выход"
+                 x:Name="ExitBtn"
+                 Style="{StaticResource ButtonWondowes}" Click="ExitBtn_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

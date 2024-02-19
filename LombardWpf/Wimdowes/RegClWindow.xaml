@@ -1,0 +1,45 @@
+﻿<Window x:Class="LombardWpf.Wimdowes.RegClWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LombardWpf.Wimdowes"
+        mc:Ignorable="d"
+        Title="RegClWindow" Height="350" Width="300"
+        ResizeMode="NoResize">
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center">
+            <TextBlock Text="Фамилия"
+                  Style="{StaticResource TextWindowes}"/>
+            <TextBox Name="FirstNameTb" PreviewTextInput="FirstNameTb_PreviewTextInput"/>
+            
+            <TextBlock Text="Имя"
+                  Style="{StaticResource TextWindowes}"/>
+            <TextBox Name="NameTb" PreviewTextInput="NameTb_PreviewTextInput"/>
+            
+            <TextBlock Text="Отчество"
+                  Style="{StaticResource TextWindowes}"/>
+            <TextBox Name="LastNameTb" PreviewTextInput="LastNameTb_PreviewTextInput"/>
+            
+            <TextBlock Text="Логин"
+                    Style="{StaticResource TextWindowes}"/>
+            <TextBox Name="LoginTb"/>
+            
+            <TextBlock Text="Пароль"
+                    Style="{StaticResource TextWindowes}"/>
+            <PasswordBox Name="PasswordTb"/>
+            
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Зарегистироваться"
+                     x:Name="RegistrationBtn"
+                     Style="{StaticResource ButtonWondowes}" Click="RegistrationBtn_Click"/>
+                <Button Content="Выход" 
+                     x:Name="ExitBtn"
+                     Click="ExitBtn_Click"
+                     Style="{StaticResource ButtonWondowes}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
