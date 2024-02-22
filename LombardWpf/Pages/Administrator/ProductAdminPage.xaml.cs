@@ -28,6 +28,8 @@ namespace LombardWpf.Pages.Administrator
             ProductLw.ItemsSource = App.db.Product.ToList();    
         }
 
+
+
         private void EstimateBtn_Click(object sender, RoutedEventArgs e)
         {
             var product = (sender as Button).DataContext as Product;
