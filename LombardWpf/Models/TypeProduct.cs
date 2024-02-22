@@ -17,16 +17,16 @@ namespace LombardWpf.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TypeProduct()
         {
-            this.Product = new HashSet<Product>();
             this.TypeAssesment = new HashSet<TypeAssesment>();
+            this.Сonclusion = new HashSet<Сonclusion>();
         }
     
         public int Id { get; set; }
         public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TypeAssesment> TypeAssesment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Сonclusion> Сonclusion { get; set; }
     }
 }

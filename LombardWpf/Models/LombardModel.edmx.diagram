@@ -5,22 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7a8fc4bec02a4312993cc24498c45184" Name="Diagram1">
-        <EntityTypeShape EntityType="LombardModel.Assessment" Width="1.5" PointX="3.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LombardModel.PhotoProduct" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="LombardModel.Product" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LombardModel.Role" Width="1.5" PointX="1.5" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LombardModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LombardModel.TypeAssesment" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LombardModel.TypeProduct" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LombardModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LombardModel.Сonclusion" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
-        <AssociationConnector Association="LombardModel.FK_TypeAssesment_Assessment" ManuallyRouted="false" />
-        <AssociationConnector Association="LombardModel.FK_PhotoProduct_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="LombardModel.FK_Product_TypeProduct" ManuallyRouted="false" />
-        <AssociationConnector Association="LombardModel.FK_Product_User" ManuallyRouted="false" />
-        <AssociationConnector Association="LombardModel.FK_Сonclusion_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="LombardModel.FK_User_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="LombardModel.FK_TypeAssesment_TypeProduct" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LombardModel.Assessment" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="LombardModel.PhotoProduct" Width="1.5" PointX="7.5" PointY="6.875" />
+        <EntityTypeShape EntityType="LombardModel.Product" Width="1.5" PointX="5.25" PointY="3.625" />
+        <EntityTypeShape EntityType="LombardModel.Role" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="LombardModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="LombardModel.TypeAssesment" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="LombardModel.TypeProduct" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="LombardModel.User" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="LombardModel.Сonclusion" Width="1.5" PointX="7.5" PointY="3.75" />
+        <AssociationConnector Association="LombardModel.FK_TypeAssesment_Assessment" />
+        <AssociationConnector Association="LombardModel.FK_PhotoProduct_Product" />
+        <AssociationConnector Association="LombardModel.FK_Product_User" />
+        <AssociationConnector Association="LombardModel.FK_Сonclusion_Product" />
+        <AssociationConnector Association="LombardModel.FK_User_Role" />
+        <AssociationConnector Association="LombardModel.FK_TypeAssesment_TypeProduct" />
+        <AssociationConnector Association="LombardModel.FK_Сonclusion_TypeProduct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

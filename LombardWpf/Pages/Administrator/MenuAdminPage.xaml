@@ -34,12 +34,14 @@
                 <Button x:Name="AllProductsBtn" Content="Все товары" Click="AllProductsBt_Click"/>
                 <Button x:Name="CriterionBtn" Content="Критерии" Click="CriterionBtn_Click"/>
                 <Button x:Name="TypeBtn" Content="Типы" Click="TypeBtn_Click"/>
+                <Button x:Name="Btn" Content="Заключения" Click="AllProductsBt_Click"/>
+
             </StackPanel>
-            <StackPanel   HorizontalAlignment="Center" Margin="100 0" Orientation="Horizontal">
+            <StackPanel   HorizontalAlignment="Center" Margin="40 0" Orientation="Horizontal">
 
                 <TextBlock Text="ЛОМБАРД №1" Style="{StaticResource MainTb}" />
             </StackPanel>
-            <StackPanel  HorizontalAlignment="Right"  Margin="70 0" Orientation="Horizontal" >
+            <StackPanel    Orientation="Horizontal" Margin="80 0 " >
 
                 <Button x:Name="CloseBt" Content="Закрыть" Click="CloseBt_Click"/>
 

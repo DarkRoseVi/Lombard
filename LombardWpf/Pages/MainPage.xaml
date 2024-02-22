@@ -23,7 +23,7 @@
                          HorizontalAlignment="Center">
                 <Button Content="Клиент"
                         x:Name="ClientBtn" Click="ClientBtn_Click" />
-                <Button Content="Адинистратор"
+                <Button Content="Администратор"
                         x:Name="AdminBtn" Click="AdminBtn_Click"/>
             </StackPanel>
   

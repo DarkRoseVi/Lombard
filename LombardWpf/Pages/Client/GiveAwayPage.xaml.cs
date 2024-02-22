@@ -78,12 +78,12 @@ namespace LombardWpf.Pages.Client
                 MessageBox.Show("Заполните поле названия");
                 return;
             }
-            else if( contextproduct.TypeProduct == null) 
-            {
-                MessageBox.Show("Выберите тип");
-                return;
+            //else if( contextproduct.TypeProduct == null) 
+            //{
+            //    MessageBox.Show("Выберите тип");
+            //    return;
 
-            }
+            //}
             else 
             {
             App.db.Product.Add(contextproduct);

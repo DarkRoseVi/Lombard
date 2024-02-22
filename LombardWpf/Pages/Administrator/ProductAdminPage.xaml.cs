@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LombardWpf.Models;
+using LombardWpf.Pages;
 
 namespace LombardWpf.Pages.Administrator
 {
@@ -25,6 +26,12 @@ namespace LombardWpf.Pages.Administrator
         {
             InitializeComponent();
             ProductLw.ItemsSource = App.db.Product.ToList();    
+        }
+
+        private void EstimateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var product = (sender as Button).DataContext as Product;
+            NavigationService.Navigate(new СonclusionPage(product));
         }
     }
 }

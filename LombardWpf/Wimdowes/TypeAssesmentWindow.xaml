@@ -19,6 +19,7 @@
             <ComboBox x:Name="AssessmentCb"
                       DisplayMemberPath="Title"
                       Width="200"
+                      SelectedIndex="0"
                       Margin="5"/>
             <Button Content="Сохранить"
                     Name="SaveBtn"

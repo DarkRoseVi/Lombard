@@ -16,7 +16,10 @@ namespace LombardWpf.Models
     {
         public int Id { get; set; }
         public Nullable<int> ProductId { get; set; }
+        public Nullable<int> TypeProductId { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Product Product { get; set; }
+        public virtual TypeProduct TypeProduct { get; set; }
     }
 }

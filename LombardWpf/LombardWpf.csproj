@@ -79,6 +79,9 @@
     <Compile Include="Pages\Administrator\TypePage.xaml.cs">
       <DependentUpon>TypePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Administrator\СonclusionPage.xaml.cs">
+      <DependentUpon>СonclusionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Client\GiveAwayPage.xaml.cs">
       <DependentUpon>GiveAwayPage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Administrator\TypePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Administrator\СonclusionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

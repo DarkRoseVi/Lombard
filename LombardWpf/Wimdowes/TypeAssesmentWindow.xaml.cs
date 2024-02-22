@@ -30,11 +30,12 @@ namespace LombardWpf.Wimdowes
             contexttype = producttype;
             DataContext = contexttype;
             //AssessmentCb.ItemsSource = App.db.Assessment.Where(x=>!contexttype.TypeAssesment.Select(z=>z.Assessment).Contains(x)).ToList();
-            var t = contexttype.TypeAssesment.Select(x => x.Assessment).ToList();
+          //  var t = contexttype.TypeAssesment.Select(x => x.Assessment).ToList();
             //var listass = App.db.TypeAssesment.Where(x=>x.TypeProduct ==  contexttype).Select(z=>z.Assessment).Select(q=>q.Id).ToList();
             //AssessmentCb.ItemsSource = App.db.Assessment.Where(x => listass.Contains(x.Id)==false).ToList();
-            var tt = App.db.Assessment.Where(x => t.Contains(x));
-
+            var tt = App.db.Assessment.ToList().Where(x => !producttype.TypeAssesment.Select(r=>r.Assessment).Contains(x)).ToList();
+         
+            AssessmentCb.ItemsSource = tt;
             //AssessmentCb.ItemsSource = App.db.Assessment.Where(x => !contexttype.TypeAssesment.Contains(x)).ToList();   
             TypeTb.Text = contexttype.Title;
         }

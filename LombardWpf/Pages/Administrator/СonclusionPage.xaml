@@ -1,0 +1,57 @@
+﻿<Page x:Class="LombardWpf.Pages.Administrator.СonclusionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LombardWpf.Pages.Administrator"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="СonclusionPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="383*"/>
+            <ColumnDefinition Width="418*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Продукт" 
+                       Margin="5"
+                       Style="{StaticResource TextWindowes}"/>
+            <TextBlock x:Name="ProductNameTb"  
+                       Margin="5"
+                       Style="{StaticResource TextWindowes}"/>
+            <TextBlock Text="Тип продукта" Margin="5"
+                       Style="{StaticResource TextWindowes}"/>
+            <ComboBox x:Name="TypeProdyctCb"
+                      DisplayMemberPath="Title"
+                      Margin="5" Width="250" SelectionChanged="TypeProdyctCb_SelectionChanged"/>
+            <Button Name="SaveBtn"
+                    Content="Зафисксировать" Click="SaveBtn_Click"/>
+        </StackPanel>
+
+       
+            <ListView x:Name="AssementLw"
+                       Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock 
+                                    Margin="5"
+                                    Text="Название"/>
+                            <TextBlock 
+                                Margin="5"
+                                Text="{Binding Assessment.Title}"/>
+                            <TextBlock Text="Значение"/>
+                            <TextBox Width="50"
+                                     Text="{Binding Estimation}"/>
+                        </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+       
+    </Grid>
+</Page>

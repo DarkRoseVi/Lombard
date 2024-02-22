@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище LombardModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище LombardModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assessment">
           <Key>
             <PropertyRef Name="Id" />
@@ -80,6 +80,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" />
+          <Property Name="TypeProductId" Type="int" />
+          <Property Name="Date" Type="date" />
         </EntityType>
         <Association Name="FK_PhotoProduct_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
@@ -90,18 +92,6 @@
             </Principal>
             <Dependent Role="PhotoProduct">
               <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_TypeProduct">
-          <End Role="TypeProduct" Type="Self.TypeProduct" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeProduct">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="TypeProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -162,6 +152,18 @@
             </Principal>
             <Dependent Role="Сonclusion">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сonclusion_TypeProduct">
+          <End Role="TypeProduct" Type="Self.TypeProduct" Multiplicity="0..1" />
+          <End Role="Сonclusion" Type="Self.Сonclusion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Сonclusion">
+              <PropertyRef Name="TypeProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -179,10 +181,6 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="PhotoProduct" EntitySet="PhotoProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_TypeProduct" Association="Self.FK_Product_TypeProduct">
-            <End Role="TypeProduct" EntitySet="TypeProduct" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
           <AssociationSet Name="FK_Product_User" Association="Self.FK_Product_User">
             <End Role="User" EntitySet="User" />
             <End Role="Product" EntitySet="Product" />
@@ -203,19 +201,61 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="Сonclusion" EntitySet="Сonclusion" />
           </AssociationSet>
+          <AssociationSet Name="FK_Сonclusion_TypeProduct" Association="Self.FK_Сonclusion_TypeProduct">
+            <End Role="TypeProduct" EntitySet="TypeProduct" />
+            <End Role="Сonclusion" EntitySet="Сonclusion" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LombardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LombardEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assessment" EntityType="LombardModel.Assessment" />
+          <EntitySet Name="PhotoProduct" EntityType="LombardModel.PhotoProduct" />
+          <EntitySet Name="Product" EntityType="LombardModel.Product" />
+          <EntitySet Name="Role" EntityType="LombardModel.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="LombardModel.sysdiagrams" />
+          <EntitySet Name="TypeAssesment" EntityType="LombardModel.TypeAssesment" />
+          <EntitySet Name="TypeProduct" EntityType="LombardModel.TypeProduct" />
+          <EntitySet Name="User" EntityType="LombardModel.User" />
+          <EntitySet Name="Сonclusion" EntityType="LombardModel.Сonclusion" />
+          <AssociationSet Name="FK_TypeAssesment_Assessment" Association="LombardModel.FK_TypeAssesment_Assessment">
+            <End Role="Assessment" EntitySet="Assessment" />
+            <End Role="TypeAssesment" EntitySet="TypeAssesment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhotoProduct_Product" Association="LombardModel.FK_PhotoProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PhotoProduct" EntitySet="PhotoProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_User" Association="LombardModel.FK_Product_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сonclusion_Product" Association="LombardModel.FK_Сonclusion_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Сonclusion" EntitySet="Сonclusion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="LombardModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeAssesment_TypeProduct" Association="LombardModel.FK_TypeAssesment_TypeProduct">
+            <End Role="TypeProduct" EntitySet="TypeProduct" />
+            <End Role="TypeAssesment" EntitySet="TypeAssesment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сonclusion_TypeProduct" Association="LombardModel.FK_Сonclusion_TypeProduct">
+            <End Role="TypeProduct" EntitySet="TypeProduct" />
+            <End Role="Сonclusion" EntitySet="Сonclusion" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Assessment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TypeAssesment" Relationship="Self.FK_TypeAssesment_Assessment" FromRole="Assessment" ToRole="TypeAssesment" />
+          <NavigationProperty Name="TypeAssesment" Relationship="LombardModel.FK_TypeAssesment_Assessment" FromRole="Assessment" ToRole="TypeAssesment" />
         </EntityType>
         <EntityType Name="PhotoProduct">
           <Key>
@@ -224,7 +264,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" />
           <Property Name="PhotoProd" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_PhotoProduct_Product" FromRole="PhotoProduct" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="LombardModel.FK_PhotoProduct_Product" FromRole="PhotoProduct" ToRole="Product" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -234,10 +274,9 @@
           <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="TypeProductId" Type="Int32" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="PhotoProduct" Relationship="Self.FK_PhotoProduct_Product" FromRole="Product" ToRole="PhotoProduct" />
-          <NavigationProperty Name="TypeProduct" Relationship="Self.FK_Product_TypeProduct" FromRole="Product" ToRole="TypeProduct" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Product_User" FromRole="Product" ToRole="User" />
-          <NavigationProperty Name="Сonclusion" Relationship="Self.FK_Сonclusion_Product" FromRole="Product" ToRole="Сonclusion" />
+          <NavigationProperty Name="PhotoProduct" Relationship="LombardModel.FK_PhotoProduct_Product" FromRole="Product" ToRole="PhotoProduct" />
+          <NavigationProperty Name="User" Relationship="LombardModel.FK_Product_User" FromRole="Product" ToRole="User" />
+          <NavigationProperty Name="Сonclusion" Relationship="LombardModel.FK_Сonclusion_Product" FromRole="Product" ToRole="Сonclusion" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -245,13 +284,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="LombardModel.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -265,8 +304,8 @@
           <Property Name="TypeId" Type="Int32" />
           <Property Name="AssesmentId" Type="Int32" />
           <Property Name="Estimation" Type="Int32" />
-          <NavigationProperty Name="Assessment" Relationship="Self.FK_TypeAssesment_Assessment" FromRole="TypeAssesment" ToRole="Assessment" />
-          <NavigationProperty Name="TypeProduct" Relationship="Self.FK_TypeAssesment_TypeProduct" FromRole="TypeAssesment" ToRole="TypeProduct" />
+          <NavigationProperty Name="Assessment" Relationship="LombardModel.FK_TypeAssesment_Assessment" FromRole="TypeAssesment" ToRole="Assessment" />
+          <NavigationProperty Name="TypeProduct" Relationship="LombardModel.FK_TypeAssesment_TypeProduct" FromRole="TypeAssesment" ToRole="TypeProduct" />
         </EntityType>
         <EntityType Name="TypeProduct">
           <Key>
@@ -274,8 +313,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Product_TypeProduct" FromRole="TypeProduct" ToRole="Product" />
-          <NavigationProperty Name="TypeAssesment" Relationship="Self.FK_TypeAssesment_TypeProduct" FromRole="TypeProduct" ToRole="TypeAssesment" />
+          <NavigationProperty Name="TypeAssesment" Relationship="LombardModel.FK_TypeAssesment_TypeProduct" FromRole="TypeProduct" ToRole="TypeAssesment" />
+          <NavigationProperty Name="Сonclusion" Relationship="LombardModel.FK_Сonclusion_TypeProduct" FromRole="TypeProduct" ToRole="Сonclusion" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -288,8 +327,8 @@
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Product_User" FromRole="User" ToRole="Product" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Product" Relationship="LombardModel.FK_Product_User" FromRole="User" ToRole="Product" />
+          <NavigationProperty Name="Role" Relationship="LombardModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="Сonclusion">
           <Key>
@@ -297,11 +336,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Сonclusion_Product" FromRole="Сonclusion" ToRole="Product" />
+          <Property Name="TypeProductId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Product" Relationship="LombardModel.FK_Сonclusion_Product" FromRole="Сonclusion" ToRole="Product" />
+          <NavigationProperty Name="TypeProduct" Relationship="LombardModel.FK_Сonclusion_TypeProduct" FromRole="Сonclusion" ToRole="TypeProduct" />
         </EntityType>
         <Association Name="FK_TypeAssesment_Assessment">
-          <End Role="Assessment" Type="Self.Assessment" Multiplicity="0..1" />
-          <End Role="TypeAssesment" Type="Self.TypeAssesment" Multiplicity="*" />
+          <End Type="LombardModel.Assessment" Role="Assessment" Multiplicity="0..1" />
+          <End Type="LombardModel.TypeAssesment" Role="TypeAssesment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Assessment">
               <PropertyRef Name="Id" />
@@ -312,8 +354,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PhotoProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="PhotoProduct" Type="Self.PhotoProduct" Multiplicity="*" />
+          <End Type="LombardModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="LombardModel.PhotoProduct" Role="PhotoProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
@@ -323,21 +365,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_TypeProduct">
-          <End Role="TypeProduct" Type="Self.TypeProduct" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeProduct">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="TypeProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Product_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Type="LombardModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="LombardModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -348,8 +378,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Сonclusion_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Сonclusion" Type="Self.Сonclusion" Multiplicity="*" />
+          <End Type="LombardModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="LombardModel.Сonclusion" Role="Сonclusion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
@@ -360,8 +390,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="LombardModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="LombardModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="Id" />
@@ -372,8 +402,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TypeAssesment_TypeProduct">
-          <End Role="TypeProduct" Type="Self.TypeProduct" Multiplicity="0..1" />
-          <End Role="TypeAssesment" Type="Self.TypeAssesment" Multiplicity="*" />
+          <End Type="LombardModel.TypeProduct" Role="TypeProduct" Multiplicity="0..1" />
+          <End Type="LombardModel.TypeAssesment" Role="TypeAssesment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeProduct">
               <PropertyRef Name="Id" />
@@ -383,45 +413,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LombardEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Assessment" EntityType="Self.Assessment" />
-          <EntitySet Name="PhotoProduct" EntityType="Self.PhotoProduct" />
-          <EntitySet Name="Product" EntityType="Self.Product" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TypeAssesment" EntityType="Self.TypeAssesment" />
-          <EntitySet Name="TypeProduct" EntityType="Self.TypeProduct" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="Сonclusion" EntityType="Self.Сonclusion" />
-          <AssociationSet Name="FK_TypeAssesment_Assessment" Association="Self.FK_TypeAssesment_Assessment">
-            <End Role="Assessment" EntitySet="Assessment" />
-            <End Role="TypeAssesment" EntitySet="TypeAssesment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PhotoProduct_Product" Association="Self.FK_PhotoProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="PhotoProduct" EntitySet="PhotoProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_TypeProduct" Association="Self.FK_Product_TypeProduct">
-            <End Role="TypeProduct" EntitySet="TypeProduct" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_User" Association="Self.FK_Product_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Сonclusion_Product" Association="Self.FK_Сonclusion_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Сonclusion" EntitySet="Сonclusion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TypeAssesment_TypeProduct" Association="Self.FK_TypeAssesment_TypeProduct">
-            <End Role="TypeProduct" EntitySet="TypeProduct" />
-            <End Role="TypeAssesment" EntitySet="TypeAssesment" />
-          </AssociationSet>
-        </EntityContainer>
+        <Association Name="FK_Сonclusion_TypeProduct">
+          <End Type="LombardModel.TypeProduct" Role="TypeProduct" Multiplicity="0..1" />
+          <End Type="LombardModel.Сonclusion" Role="Сonclusion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Сonclusion">
+              <PropertyRef Name="TypeProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -431,85 +434,87 @@
           <EntitySetMapping Name="Assessment">
             <EntityTypeMapping TypeName="LombardModel.Assessment">
               <MappingFragment StoreEntitySet="Assessment">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhotoProduct">
             <EntityTypeMapping TypeName="LombardModel.PhotoProduct">
               <MappingFragment StoreEntitySet="PhotoProduct">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="PhotoProd" ColumnName="PhotoProd" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="LombardModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="TypeProductId" ColumnName="TypeProductId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TypeProductId" ColumnName="TypeProductId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="LombardModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="LombardModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeAssesment">
             <EntityTypeMapping TypeName="LombardModel.TypeAssesment">
               <MappingFragment StoreEntitySet="TypeAssesment">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
-                <ScalarProperty Name="AssesmentId" ColumnName="AssesmentId" />
                 <ScalarProperty Name="Estimation" ColumnName="Estimation" />
+                <ScalarProperty Name="AssesmentId" ColumnName="AssesmentId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeProduct">
             <EntityTypeMapping TypeName="LombardModel.TypeProduct">
               <MappingFragment StoreEntitySet="TypeProduct">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="LombardModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Сonclusion">
             <EntityTypeMapping TypeName="LombardModel.Сonclusion">
               <MappingFragment StoreEntitySet="Сonclusion">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TypeProductId" ColumnName="TypeProductId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
